@@ -13,11 +13,26 @@
 #endif
 
 int main(void) {
-    /* Insert DDR and PORT initializations */
+    
+/* Insert DDR and PORT initializations */
+	DDRA = 0x00; PORTA = 0xFF;
+	DDRB = 0xFF; PORTB = 0x00;
 
     /* Insert your solution below */
-    while (1) {
+	 unsigned char sensor1 = 0x00;
+   unsigned char sensor2 = 0x00;
 
+    while (1) {
+	 sensor1 = PINA & 0x01;
+      	sensor2 = PINA & 0x02;
+	      if((sensor1 == 0x01) && (sensor2 == 0x00))
+      	{
+        	PORTB = 0x01;
+      	}
+      	else
+      	{
+        	PORTB = 0x00;
+      	}
     }
     return 1;
 }
